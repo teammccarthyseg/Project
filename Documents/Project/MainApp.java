@@ -7,6 +7,7 @@ import javaclient3.structures.PlayerConstants;
 import javaclient3.structures.PlayerPose2d;
 import javaclient3.structures.position2d.PlayerPosition2dCmdPos;
 
+//TEAM McCARTHY!!
 
 public class MainApp {
     /** 
