@@ -1,0 +1,56 @@
+Some advice on exploring this map
+=================================
+
+To open this map, start Player and Stage with the command:
+player map1.cfg &
+
+Next, open Player Viewer to explore basic robot operations, the information provided by the fiducial sensor and operation of the grippers.  Use the command:
+playerv &
+
+
+Simple gripper operation
+------------------------
+
+Observe the location of the red robot in the map.  The red robot has a green garbage object within its gripper.  In Player Viewer (i.e. playerv, not the Player/Stage simulation!!!), select:
+Devices > gripper:0 (stage) > Subscribe
+
+In the Stage simulation, the inner sides of the grippers begin to blink yellow.  This indicates that the grippers have something in their grasp.  All you need to do now is to close the grippers.  In Player Viewer, select:
+Devices > gripper:0 (stage) > Close Gripper
+
+You will see an animation in Stage indicating that the green garbage object has been picked up.  In Player Viewer, the gripper is in a closed state.  Let's see if the garbage object will move along with the red robot.  In Player Viewer, select:
+Devices > position2d:0 (stage) > Subscribe
+followed by:
+Devices > position2d:0 (stage) > Command
+
+A red crosshair with circle in the middle will now appear in Player Viewer.  Click in the little circle in the middle of the crosshairs and drag the crosshairs to the left (whilst holding the left mousebutton down).  The red robot will now move forwards with the garbage object.  Move the object forwards a little.
+
+Now, lets drop the object.  In Player Viewer, select:
+Devices > gripper:0 (stage) > Open Gripper
+
+You will see an animation in Stage indicating that the green garbage object has been dropped.  In Player Viewer, the gripper is in a closed state.  Finally, move the robot backwards by dragging the crosshairs in Player Viewer to the right and note how the green garbage object is left behind.  All this functionality is accessible via the Player API.
+
+To move to the next experiment, unsubscribe from the position2d:0 and gripper:0 interfaces by unticking:
+Devices > position2d:0 (stage) > Subscribe
+Devices > gripper:0 (stage) > Subscribe
+
+
+Simple Search&Retrieve with Player Viewer
+-----------------------------------------
+
+Observe the location of the blue robot and the brown and orange garbage objects in the map.  First, access the fiducial sensor data of the blue robot with (in Player Viewer):
+Devices > fiducial:2 (stage) > Subscribe
+
+Observe how the Player/Stage simulation shows a dashed pink line from the blue robot to the orange garbage object.  Next, subscribe to gripper:2 and position2d:2 and select:
+Devices > position2d:2 (stage) > Command
+Use the crosshairs to move the blue robot's gripper to the orange garbage object.  Note how the pink line remains aligned with the garbage object as the blue robot moves.  This pink line represents the fiducial data provided on the garbage object.  You can use this data to locate garbage objects and align the gripper with the object.
+
+
+Some further notes
+------------------
+
+This functionality has been tested with Player v3.0.2 and Stage v4.1.1.
+
+Sometimes it can be necessary to grab and move objects slightly in the Stage simulation in order for them to be seen by sensors.
+
+You may make some changes to the file editable.inc (as specified in that file and in the handbook).  You may also create you own evaluation environments.  But, you should not make configuration changes to the robot as only your version of editable will be used to assess your work (not your versions of other files).
+
